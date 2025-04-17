@@ -1,0 +1,23 @@
+body {
+    font-family: monospace;
+    background: #111;
+    color: #eee;
+    padding: 2em;
+}
+
+h1 {
+    font-size: 2em;
+    color: #ff9d00;
+}
+
+section {
+    margin-top: 2em;
+    border-bottom: 1px dashed #555;
+    padding-bottom: 1em;
+}
+
+pre {
+    background: #222;
+    padding: 1em;
+    overflow-x: auto;
+}

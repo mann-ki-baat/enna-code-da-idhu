@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>enna-code-da-idhu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>enna-code-da-idhu</h1>
+    <p>A museum of Hello World programs in as many languages as I can possibly find.</p>
+
+    <div id="languages"></div>
+
+    <script>
+        const languages = ["python", "javascript", "c", "bash", "basic", "brainfuck"];
+
+        const container = document.getElementById("languages");
+
+        languages.forEach(lang => {
+            fetch(`../${lang}/hello.${lang === "bash" ? "sh" :
+                                        lang === "basic" ? "bas" :
+                                        lang === "brainfuck" ? "bf" :
+                                        lang === "c" ? "c" :
+                                        lang === "javascript" ? "js" :
+                                        "py"}`)
+            .then(res => res.text())
+            .then(code => {
+                const section = document.createElement("section");
+                section.innerHTML = `
+                    <h2>${lang.toUpperCase()}</h2>
+                    <pre><code>${code.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>
+                `;
+                container.appendChild(section);
+            });
+        });
+    </script>
+</body>
+</html>
