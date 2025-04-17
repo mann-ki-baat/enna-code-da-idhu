@@ -1,6 +1,6 @@
 #include <stdio.h>
 
 int main() {
-    printf("{{MESSAGE}}\n");
+    printf("{{message}}\n");
     return 0;
 }

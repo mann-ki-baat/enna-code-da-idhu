@@ -8,7 +8,7 @@ def text_to_brainfuck(text):
     return bf
 
 # Load global message
-with open("message.json") as f:
+with open('message.json', 'r', encoding='utf-8' ) as f:
     config = json.load(f)
 
 message = config["message"]
