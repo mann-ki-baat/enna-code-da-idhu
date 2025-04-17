@@ -1,38 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>enna-code-da-idhu</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Enna Code Da Idhu?</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: black;
+      color: lime;
+      padding: 2em;
+    }
+    h1 {
+      color: cyan;
+      text-shadow: 0 0 5px blue;
+    }
+    details {
+      margin: 1em 0;
+      border: 1px solid lime;
+      padding: 0.5em;
+    }
+    summary {
+      cursor: pointer;
+      font-size: 1.1em;
+    }
+    pre {
+      background: #111;
+      padding: 1em;
+      overflow-x: auto;
+      color: white;
+    }
+    a {
+      color: orange;
+    }
+  </style>
 </head>
 <body>
-<h1>enna-code-da-idhu</h1>
-<p>A museum of Hello World programs in as many languages as I can possibly find.</p>
+  <h1>Enna Code Da Idhu?</h1>
+  <p>A museum of Hello World programs in as many languages as I can possibly find.</p>
 
-<div id="languages"></div>
+  
+    <details>
+      <summary><strong>Bash</strong> — <a href="bash/hello.sh" target="_blank">View raw</a></summary>
+      <pre><code>echo &quot;Happy Birthday&quot;</code></pre>
+    </details>
+    
+    <details>
+      <summary><strong>Javascript</strong> — <a href="javascript/hello.js" target="_blank">View raw</a></summary>
+      <pre><code>console.log(&quot;Happy Birthday&quot;);</code></pre>
+    </details>
+    
+    <details>
+      <summary><strong>Brainfuck</strong> — <a href="brainfuck/hello.bf" target="_blank">View raw</a></summary>
+      <pre><code>++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
+++++++++++++++++++++++++++++++++[&gt;].
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[&gt;].
+</code></pre>
+    </details>
+    
+    <details>
+      <summary><strong>Basic</strong> — <a href="basic/hello.bas" target="_blank">View raw</a></summary>
+      <pre><code>PRINT &quot;Happy Birthday&quot;</code></pre>
+    </details>
+    
+    <details>
+      <summary><strong>C</strong> — <a href="c/hello.c" target="_blank">View raw</a></summary>
+      <pre><code>#include &lt;stdio.h&gt;
 
-<script>
-    const languages = ["python", "javascript", "c", "bash", "basic", "brainfuck"];
+int main() {
+    printf(&quot;Happy Birthday\n&quot;);
+    return 0;
+}</code></pre>
+    </details>
+    
+    <details>
+      <summary><strong>Python</strong> — <a href="python/hello.py" target="_blank">View raw</a></summary>
+      <pre><code>print(&quot;Happy Birthday&quot;)</code></pre>
+    </details>
+    
 
-    const container = document.getElementById("languages");
-
-    languages.forEach(lang => {
-      fetch(`../${lang}/hello.${lang === "bash" ? "sh" :
-                                  lang === "basic" ? "bas" :
-                                  lang === "brainfuck" ? "bf" :
-                                  lang === "c" ? "c" :
-                                  lang === "javascript" ? "js" :
-                                  "py"}`)
-        .then(res => res.text())
-        .then(code => {
-          const section = document.createElement("section");
-          section.innerHTML = `
-            <h2>${lang.toUpperCase()}</h2>
-            <pre><code>${code.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>
-          `;
-          container.appendChild(section);
-        });
-    });
-</script>
 </body>
 </html>
