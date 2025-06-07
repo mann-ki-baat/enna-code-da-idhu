@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+import os
+
+DOCS_DIR = "docs"
+INDEX_FILE = os.path.join(DOCS_DIR, "index.html")
+
+HTML_HEAD = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,14 +42,31 @@
     <h1>🎉 A Museum of Hello World Programs 🎉</h1>
     <p>Because one "Hello, World!" is never enough.</p>
     <div class="lang-list">
-<a href="hello.bash" target="_blank">Hello</a>
-<a href="hello.basic" target="_blank">Hello</a>
-<a href="hello.brainfuck" target="_blank">Hello</a>
-<a href="hello.c" target="_blank">Hello</a>
-<a href="hello.javascript" target="_blank">Hello</a>
-<a href="hello.python" target="_blank">Hello</a>
-<a href="styles.css" target="_blank">Styles</a>
+"""
 
+HTML_TAIL = """
     </div>
 </body>
 </html>
+"""
+
+def get_language_links():
+    files = os.listdir(DOCS_DIR)
+    links = []
+    for filename in sorted(files):
+        if filename == "index.html" or filename.startswith(".") or os.path.isdir(os.path.join(DOCS_DIR, filename)):
+            continue
+        lang_name = os.path.splitext(filename)[0].capitalize()
+        links.append(f'<a href="{filename}" target="_blank">{lang_name}</a>')
+    return links
+
+def build_index():
+    with open(INDEX_FILE, "w", encoding="utf-8") as f:
+        f.write(HTML_HEAD)
+        for link in get_language_links():
+            f.write(f"{link}\n")
+        f.write(HTML_TAIL)
+
+if __name__ == "__main__":
+    build_index()
+    print(f"✅ index.html generated at {INDEX_FILE}")
