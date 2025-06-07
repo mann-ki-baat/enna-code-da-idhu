@@ -3,48 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>A Museum of Hello World Programs</title>
-    <style>
-        body {
-            background-color: #111;
-            color: #00FFAA;
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            padding: 2rem;
-        }
-        h1 {
-            font-size: 3em;
-            text-shadow: 0 0 10px #0ff;
-        }
-        .lang-list {
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-        a {
-            color: #FFAA00;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.2s ease-in-out;
-        }
-        a:hover {
-            color: #FFFFFF;
-            text-shadow: 0 0 5px #FA0, 0 0 15px #FA0;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <h1>🎉 A Museum of Hello World Programs 🎉</h1>
-    <p>Because one "Hello, World!" is never enough.</p>
-    <div class="lang-list">
-<a href="hello.bash" target="_blank">Hello</a>
-<a href="hello.basic" target="_blank">Hello</a>
-<a href="hello.brainfuck" target="_blank">Hello</a>
-<a href="hello.c" target="_blank">Hello</a>
-<a href="hello.javascript" target="_blank">Hello</a>
-<a href="hello.python" target="_blank">Hello</a>
-<a href="styles.css" target="_blank">Styles</a>
+    <div class="container">
+        <h1>🎉 A Museum of Hello World Programs 🎉</h1>
+        <p class="subtitle">Because one "Hello, World!" is never enough.</p>
+        <div class="grid">
+            <a class="lang-tile" href="bash/index.html">Bash</a>
+            <a class="lang-tile" href="basic/index.html">Basic</a>
+            <a class="lang-tile" href="brainfuck/index.html">Brainfuck</a>
+            <a class="lang-tile" href="c/index.html">C</a>
+            <a class="lang-tile" href="javascript/index.html">Javascript</a>
+            <a class="lang-tile" href="python/index.html">Python</a>
 
+        </div>
     </div>
 </body>
 </html>

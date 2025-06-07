@@ -1,72 +1,50 @@
 import os
 
+# Path to the output directory
 DOCS_DIR = "docs"
-INDEX_FILE = os.path.join(DOCS_DIR, "index.html")
+OUTPUT_FILE = os.path.join(DOCS_DIR, "index.html")
 
-HTML_HEAD = """<!DOCTYPE html>
+# Get list of language folders (excluding styles, hidden folders, etc.)
+language_dirs = [
+    d for d in os.listdir(DOCS_DIR)
+    if os.path.isdir(os.path.join(DOCS_DIR, d))
+       and not d.startswith(".")
+       and d != "styles"
+]
+
+# Sort alphabetically
+language_dirs.sort()
+
+# HTML Template
+html_start = '''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>A Museum of Hello World Programs</title>
-    <style>
-        body {
-            background-color: #111;
-            color: #00FFAA;
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            padding: 2rem;
-        }
-        h1 {
-            font-size: 3em;
-            text-shadow: 0 0 10px #0ff;
-        }
-        .lang-list {
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-        a {
-            color: #FFAA00;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.2s ease-in-out;
-        }
-        a:hover {
-            color: #FFFFFF;
-            text-shadow: 0 0 5px #FA0, 0 0 15px #FA0;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <h1>🎉 A Museum of Hello World Programs 🎉</h1>
-    <p>Because one "Hello, World!" is never enough.</p>
-    <div class="lang-list">
-"""
+    <div class="container">
+        <h1>🎉 A Museum of Hello World Programs 🎉</h1>
+        <p class="subtitle">Because one "Hello, World!" is never enough.</p>
+        <div class="grid">
+'''
 
-HTML_TAIL = """
+html_end = '''
+        </div>
     </div>
 </body>
 </html>
-"""
+'''
 
-def get_language_links():
-    files = os.listdir(DOCS_DIR)
-    links = []
-    for filename in sorted(files):
-        if filename == "index.html" or filename.startswith(".") or os.path.isdir(os.path.join(DOCS_DIR, filename)):
-            continue
-        lang_name = os.path.splitext(filename)[0].capitalize()
-        links.append(f'<a href="{filename}" target="_blank">{lang_name}</a>')
-    return links
+# Generate grid tiles for each language
+tiles_html = ""
+for lang in language_dirs:
+    lang_label = lang.replace("_", " ").capitalize()
+    tiles_html += f'            <a class="lang-tile" href="{lang}/index.html">{lang_label}</a>\n'
 
-def build_index():
-    with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        f.write(HTML_HEAD)
-        for link in get_language_links():
-            f.write(f"{link}\n")
-        f.write(HTML_TAIL)
+# Write to index.html
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    f.write(html_start + tiles_html + html_end)
 
-if __name__ == "__main__":
-    build_index()
-    print(f"✅ index.html generated at {INDEX_FILE}")
+print(f"✅ index.html generated with {len(language_dirs)} languages.")
